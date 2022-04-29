@@ -41,9 +41,9 @@ const ParksMap = () => {
 
   console.log(osm.maptiler.url);
   return (
-    <div>
-      <h2>This is the map</h2>
-      <div className="map">
+    <div classname="parks-map">
+      <h2 classname="parks-map__header">This is the map</h2>
+      <div className="parks-map__container">
         <MapContainer 
           center={center}
           zoom={DEFAULT_ZOOM}
@@ -71,12 +71,14 @@ const ParksMap = () => {
           {/* Demo test marker */}
           <Marker position={[ 20, 80 ]} icon={markerIcon}>
             <Popup>
-              <h1>Test popup</h1>
+              <h1>Parks Map</h1>
             </Popup>
           </Marker>
          
         </MapContainer>
       </div>
+
+      <p className="parks-map__copy">Something about the map</p>
     </div>
   );
 };

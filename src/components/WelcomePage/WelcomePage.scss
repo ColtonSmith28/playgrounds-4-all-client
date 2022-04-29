@@ -1,0 +1,34 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/typography' as *;
+
+
+.welcome {
+  @include section-padding;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__header {
+    font-size: 2.25rem;
+    display: inline-block;
+    text-align: center;
+  }
+
+  &__copy {
+    text-align: center;
+  }
+
+  &__link {
+    text-decoration: none;
+    // Todo maybe add link color
+  }
+
+  &__logo {
+    width: 256px;
+    height: 256px;
+  }
+
+  &__app {
+    text-align: center;
+  }
+}
