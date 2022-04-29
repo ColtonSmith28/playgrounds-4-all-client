@@ -1,14 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, startTransition } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import './ParksMap.scss';
 import L from 'leaflet'; 
 import icon from '../../assets/images/playground-64.png';
+import ParkerMarker from '../ParksMarker/ParksMarker';
 
 // OSM is the maptiler object (the actual map)
 import osm from '../../scripts/osm-providers';
 
 import 'leaflet/dist/leaflet.css';
 import axios from 'axios';
+import ParksMarker from '../ParksMarker/ParksMarker';
 
 const API_URL ='http://localhost:8080/parks';
 
@@ -34,13 +36,15 @@ const ParksMap = () => {
     axios
       .get(API_URL)
       .then(response => {
+        console.log(response.data.meta)
         console.log(response.data.playgrounds)
-        this.setState({ parksData: response.data.playgrounds })
+        this.setState({ parksData: response.data })
       })
   }, []);
 
   console.log(osm.maptiler.url);
   return (
+    this.state.parksData ?
     <div classname="parks-map">
       <h2 classname="parks-map__header">This is the map</h2>
       <div className="parks-map__container">
@@ -55,18 +59,20 @@ const ParksMap = () => {
             attribution={osm.maptiler.attribution} 
           />
 
-        {/* {this.state.parksData.map((location) => {
-          <Marker
-            position={location.latitude, location.longitude}
+          
+
+        {this.state.parksData.playgrounds.map((location) => {
+          <ParksMarker
+            position={
+              location.latitude, 
+              location.longitude
+            }
             icon={markerIcon}
             key={location.id}
           >
-          <Popup>
-            <h3>{location.address}</h3>
-          </Popup>
 
-          </Marker>
-        })} */}
+          </ParksMarker>
+        })}
 
           {/* Demo test marker */}
           <Marker position={[ 20, 80 ]} icon={markerIcon}>
@@ -80,6 +86,8 @@ const ParksMap = () => {
 
       <p className="parks-map__copy">Something about the map</p>
     </div>
+    :
+    <h3>Loading...</h3>
   );
 };
 
