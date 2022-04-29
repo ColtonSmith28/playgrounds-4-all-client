@@ -7,7 +7,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
-    <h1>Hello App</h1>
+    <h1>Hello Index</h1>
     <App />
   </>
 );
