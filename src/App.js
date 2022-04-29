@@ -1,15 +1,21 @@
 import React from "react";
-import marker from './assets/images/playground-icon-24.png';
 import ParksMap from './components/ParksMap/ParksMap';
+import WelcomePage from './components/WelcomePage/WelcomePage';
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './App.scss';
 
 
 
 
 const App = () => {
   return (
-    <div>
-        <h1>Hello app</h1>
-        <ParksMap />
+    <div className='app'>
+        <Router>
+          <Switch>
+            <Route path='/welcome' exact component={WelcomePage} />
+            <Route path="/" component={ParksMap} />
+          </Switch>
+        </Router>
     </div>
   );
 };

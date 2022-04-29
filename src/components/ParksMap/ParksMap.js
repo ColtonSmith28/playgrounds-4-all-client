@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import './Map.scss';
+import './ParksMap.scss';
 import L from 'leaflet'; 
 import icon from '../../assets/images/playground-64.png';
 

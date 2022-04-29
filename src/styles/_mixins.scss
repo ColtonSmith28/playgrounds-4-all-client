@@ -1,0 +1,32 @@
+@use './variables' as *;
+
+// Screen Size
+@mixin mobile {
+  @media (min-width: $mobile-breakpoint) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin section-padding {
+  padding: $mob-pad-top $mob-pad-lr $mob-pad-bot $mob-pad-lr;
+
+  @include tablet {
+    padding: $tab-pad-top $tab-pad-lr $tab-pad-bot $tab-pad-lr;
+  }
+
+  @include desktop {
+    padding: $des-pad-top $dt-pad-lr;
+  }
+}

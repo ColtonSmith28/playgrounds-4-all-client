@@ -1,0 +1,20 @@
+// Screen Size Media Queries
+$mobile-breakpoint: 320px;
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 1280px;
+
+// Variables for Section Padding Mix @ different viewport sizes
+// Horizontal / Left & Right - Padding
+$mob-pad-lr: 1rem;
+$tab-pad-lr: 2.25rem;
+$dt-pad-lr: 8rem;
+
+// Top - Padding
+$mob-pad-top: 0.75rem;
+$tab-pad-top: 1.5rem;
+$des-pad-top: 3rem;
+
+// Bottom - Padding
+$mob-pad-bot: 1rem;
+$tab-pad-bot: 1rem;
+//$desktop-padding-bottom: RESERVED;
