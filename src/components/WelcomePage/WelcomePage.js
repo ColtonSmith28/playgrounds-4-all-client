@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import logo from '../../assets/images/playground-512.png'
+import logo from '../../assets/images/playground-512.svg'
 import './WelcomePage.scss'
 
 const WelcomePage = () => {

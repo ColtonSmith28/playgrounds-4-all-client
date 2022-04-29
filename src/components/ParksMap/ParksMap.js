@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import './ParksMap.scss';
+// L is an object in leaflet
 import L from 'leaflet'; 
-import icon from '../../assets/images/playground-64.png';
+import icon from '../../assets/images/playground-64.svg';
 
 // OSM is the maptiler object (the actual map)
 import osm from '../../scripts/osm-providers';
@@ -24,9 +25,12 @@ const markerIcon = new L.Icon({
 
 const ParksMap = () => {
   // https://reactjs.org/docs/hooks-state.html
+  // Add set zoom & US Lng and Lat
   const [center, setCenter] = useState({ lat: 20, lng: 80 })
   const DEFAULT_ZOOM = 9;
   const mapRef = useRef()
+  const [parksData, setParksData] = useState(null)
+
 
 
   // useEffect is hooks equivalent of componentDidMount - https://stackoverflow.com/questions/53945763/componentdidmount-equivalent-on-a-react-function-hooks-component
@@ -35,7 +39,8 @@ const ParksMap = () => {
       .get(API_URL)
       .then(response => {
         console.log(response.data.playgrounds)
-        this.setState({ parksData: response.data.playgrounds })
+        setParksData(response.data)
+        // this.setState({ parksData: response.data.playgrounds })
       })
   }, []);
 

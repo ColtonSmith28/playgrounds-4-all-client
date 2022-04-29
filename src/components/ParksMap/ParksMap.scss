@@ -10,12 +10,12 @@
 }
 
 .parks-map {
-  @include section-padding;
+  // @include section-padding
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  @include tablet
+  
+  // @include tablet
 
   &__header {
     text-align: center;
