@@ -26,9 +26,10 @@ const markerIcon = new L.Icon({
 
 const ParksMap = () => {
   // https://reactjs.org/docs/hooks-state.html
-  const [center, setCenter] = useState({ lat: 20, lng: 80 })
-  const DEFAULT_ZOOM = 9;
+  const [center, setCenter] = useState({ lat: 39.25, lng: -99 })
+  const DEFAULT_ZOOM = 4;
   const mapRef = useRef()
+  const [parksData, setParksData] = useState(null)
 
 
   // useEffect is hooks equivalent of componentDidMount - https://stackoverflow.com/questions/53945763/componentdidmount-equivalent-on-a-react-function-hooks-component
@@ -38,13 +39,19 @@ const ParksMap = () => {
       .then(response => {
         console.log(response.data.meta)
         console.log(response.data.playgrounds)
-        this.setState({ parksData: response.data })
+        //this.useState({ parksData: response.data })
+        setParksData(response.data)
       })
   }, []);
 
+  useEffect(() => {
+
+  }, [parksData])
+
+
   console.log(osm.maptiler.url);
   return (
-    this.state.parksData ?
+    parksData ?
     <div classname="parks-map">
       <h2 classname="parks-map__header">This is the map</h2>
       <div className="parks-map__container">
@@ -61,17 +68,17 @@ const ParksMap = () => {
 
           
 
-        {this.state.parksData.playgrounds.map((location) => {
-          <ParksMarker
-            position={
+        {parksData.playgrounds.map((location) => {
+          <Marker
+            position={[
               location.latitude, 
               location.longitude
-            }
+            ]}
             icon={markerIcon}
             key={location.id}
           >
 
-          </ParksMarker>
+          </Marker>
         })}
 
           {/* Demo test marker */}
