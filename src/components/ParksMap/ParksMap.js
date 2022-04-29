@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, startTransition } from 'react';
+import React, { Component } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import './ParksMap.scss';
 import L from 'leaflet'; 
@@ -24,78 +24,77 @@ const markerIcon = new L.Icon({
   popupAnchor: [50, 25]
 })
 
-const ParksMap = () => {
+const center = [39.25, -99];
+const DEFAULT_ZOOM = 4;
+
+class ParksMap extends Component {
+  state = {
+    parksData: null
+  }
   // https://reactjs.org/docs/hooks-state.html
-  const [center, setCenter] = useState({ lat: 39.25, lng: -99 })
-  const DEFAULT_ZOOM = 4;
-  const mapRef = useRef()
-  const [parksData, setParksData] = useState(null)
+  // const [center, setCenter] = useState({ lat: 39.25, lng: -99 })
+  // const DEFAULT_ZOOM = 4;
+  // const mapRef = useRef()
+  // const [parksData, setParksData] = useState(null)
 
-
-  // useEffect is hooks equivalent of componentDidMount - https://stackoverflow.com/questions/53945763/componentdidmount-equivalent-on-a-react-function-hooks-component
-  useEffect(() => {
+  componentDidMount(){
     axios
       .get(API_URL)
       .then(response => {
-        console.log(response.data.meta)
-        console.log(response.data.playgrounds)
-        //this.useState({ parksData: response.data })
-        setParksData(response.data)
+        this.setState({
+          parksData: response.data
+        })
       })
-  }, []);
+  }
 
-  useEffect(() => {
+  // console.log(osm.maptiler.url)
 
-  }, [parksData])
-
-
-  console.log(osm.maptiler.url);
-  return (
-    parksData ?
-    <div classname="parks-map">
-      <h2 classname="parks-map__header">This is the map</h2>
-      <div className="parks-map__container">
-        <MapContainer 
-          center={center}
-          zoom={DEFAULT_ZOOM}
-          ref={mapRef}
-          className="leaflet-container"
-        >
-          <TileLayer 
-            url={osm.maptiler.url} 
-            attribution={osm.maptiler.attribution} 
-          />
-
-          
-
-        {parksData.playgrounds.map((location) => {
-          <Marker
-            position={[
-              location.latitude, 
-              location.longitude
-            ]}
-            icon={markerIcon}
-            key={location.id}
+  render() {
+    return (
+      this.state.parksData ?
+      <div classname="parks-map">
+        <h2 classname="parks-map__header">This is the map</h2>
+        <div className="parks-map__container">
+          <MapContainer 
+            center={center}
+            zoom={DEFAULT_ZOOM}
+            className="leaflet-container"
           >
+            <TileLayer 
+              url={osm.maptiler.url} 
+              attribution={osm.maptiler.attribution} 
+            />
 
-          </Marker>
-        })}
+          <MapContainer playgrounds={this.state.playgrounds} />
+          {/* {this.state.parksData.playgrounds.map((location) => {
+            <Marker
+              position={[
+                location.latitude, 
+                location.longitude
+              ]}
+              icon={markerIcon}
+              key={location.id}
+            >
 
-          {/* Demo test marker */}
-          <Marker position={[ 20, 80 ]} icon={markerIcon}>
-            <Popup>
-              <h1>Parks Map</h1>
-            </Popup>
-          </Marker>
-         
-        </MapContainer>
+            </Marker> */}
+          })}
+
+            {/* Demo test marker */}
+            <Marker position={[ 20, 80 ]} icon={markerIcon}>
+              <Popup>
+                <h1>Parks Map</h1>
+              </Popup>
+            </Marker>
+          
+          </MapContainer>
+        </div>
+
+        <p className="parks-map__copy">Something about the map</p>
       </div>
-
-      <p className="parks-map__copy">Something about the map</p>
-    </div>
-    :
-    <h3>Loading...</h3>
-  );
-};
+      :
+      <h3>Loading...</h3>
+    );
+  }
+}
 
 export default ParksMap;
