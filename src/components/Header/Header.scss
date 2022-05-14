@@ -1,0 +1,20 @@
+@use '../../styles/global' as *;
+@use '../../styles/typography' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/colors' as *;
+
+
+.header {
+    display: flex;
+    padding: 1rem 0;
+    border-bottom: solid 2px $peach-dk;
+    &__link {
+        display: flex;
+        justify-content: center;
+    }
+    &__logo {
+        width: 3rem;
+        margin: 0 auto;
+    }
+
+}

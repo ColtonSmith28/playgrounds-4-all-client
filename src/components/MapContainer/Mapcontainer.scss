@@ -8,6 +8,26 @@
   width: 100%;
   // TODO - Make responsive
 }
+.leaflet-popup-content p {
+  margin: 0; 
+}
+
+.popup {
+  background-color:  #FFFFFF;
+  margin: 0;
+  &__subheader {
+    background-color: #FFFFFF;
+  }
+  &__title {
+    background-color: #FFFFFF;
+    margin: 0;
+    font-weight: 700;
+  }
+  &__body {
+    background-color: #FFFFFF;
+    margin: 0;
+  }
+}
 
 .parks-map {
   @include section-padding;
@@ -15,14 +35,15 @@
   flex-direction: column;
   align-items: center;
 
-  &__header {
-    margin: 0 auto;
-    margin-top: 0.5rem;
+  @include tablet {
+    
   }
 
+  &__header {
+    text-align: center;
+  }
 
   &__container {
     @include section-padding;
   }
 }
-

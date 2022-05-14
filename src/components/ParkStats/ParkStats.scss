@@ -1,0 +1,62 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/typography' as *;
+@use '../../styles/colors' as *;
+
+.Container {
+    /* Light grey background to help focus on the cards */
+    background-color: rgb(238, 238, 238);
+    /* Extra spacing so the grid looks uniform on the page */
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .Grid__Container {
+    /* Initialize the grid */
+    display: grid;
+    /* Single column on small screens */
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+  }
+  
+  .Stat__Card {
+    padding: 1rem;
+    background-color: white;
+    /* Subtle box-shadow that defines the shape of the card */
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15);
+    border-radius: 0.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .Grid__Container {
+      /* Switch to 3 columns on larger screens */
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .Stat__Container {
+    /* Initialize flexbox */
+    display: flex;
+    /* We want the title to be over the content */
+    flex-direction: column;
+    background-color: #FFFFFF;
+  }
+  
+  .Stat__Content {
+    /* Dark grey color for the title text */
+    color: #6c757d;
+    background-color: #FFFFFF;
+    padding-top: 1rem;
+    &-Body {
+        background-color: white;
+        margin: 0 auto;
+        width: fit-content;
+    }
+  }
+  
+  .Stat__Title {
+    /* More prominent text for the numbers */
+    font-size: 2rem;
+    font-weight: 700;
+    background-color: #FFFFFF;
+    margin: 0 auto;
+  }

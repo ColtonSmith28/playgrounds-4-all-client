@@ -1,0 +1,18 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/typography' as *;
+@use '../../styles/colors' as *;
+
+
+
+
+.credits {
+    padding: 1rem;
+    padding-top: 3rem;
+    &__subheader {
+        color: $primary-green;
+    }
+}
+.welcome__link {
+    color: $blue-dk;
+    
+}
